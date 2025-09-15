@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheThought - A World of Thought</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>TheThought</h1>
+            <p>A global commons for sharing human thought. Freely and openly.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="compose-section">
+            <h2>Share a Thought</h2>
+            <div class="compose-box">
+                <textarea id="thought-input" placeholder="What are you thinking about?" maxlength="1000"></textarea>
+                <div class="compose-actions">
+                    <span id="char-counter">1000</span>
+                    <button id="post-button">Post Thought</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <h2>Global Timeline</h2>
+            <div id="timeline">
+                <div class="thought-post">
+                    <div class="post-header">
+                        <img src="https://i.pravatar.cc/50?u=user1" alt="Avatar" class="avatar">
+                        <div class="user-info">
+                            <span class="username">Anonymous thinker</span>
+                            <span class="handle">@anon1672</span>
+                        </div>
+                    </div>
+                    <div class="post-body">
+                        <p>The core idea of an open-source platform grounded in human rights is powerful. It shifts the focus from monetization to genuine connection and expression. This is the first thought on TheThought!</p>
+                    </div>
+                    <div class="post-footer">
+                        <button class="action-button">Reply</button>
+                        <button class="action-button">Amplify</button>
+                        <button class="action-button">Resonate</button>
+                    </div>
+                </div>
+
+                <div class="thought-post">
+                    <div class="post-header">
+                        <img src="https://i.pravatar.cc/50?u=user2" alt="Avatar" class="avatar">
+                        <div class="user-info">
+                            <span class="username">Observer</span>
+                            <span class="handle">@observer84</span>
+                        </div>
+                    </div>
+                    <div class="post-body">
+                        <p>A purely chronological timeline is a crucial feature. It ensures that every voice has an equal chance to be seen, not just those favored by an algorithm. #transparency #opensource</p>
+                    </div>
+                    <div class="post-footer">
+                        <button class="action-button">Reply</button>
+                        <button class="action-button">Amplify</button>
+                        <button class="action-button">Resonate</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TheThought Community. This is an open-source project.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
