@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheThought - A World of Thought</title>
+    <meta name="theme-color" content="#121212">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <div class="brand">
+                    <div class="logo" aria-hidden="true">💭</div>
+                    <div class="brand-text">
+                        <h1>TheThought</h1>
+                        <span class="tagline">A global commons for human thought</span>
+                    </div>
+                </div>
+                <div class="tabs" role="tablist">
+                    <button class="tab active" data-tab="home" role="tab" aria-selected="true">Home</button>
+                    <button class="tab" data-tab="search" role="tab">Search</button>
+                    <button class="tab" data-tab="reels" role="tab">Reels</button>
+                    <button class="tab" data-tab="messages" role="tab">Message</button>
+                    <button class="tab" data-tab="profile" role="tab">Profile</button>
+                </div>
+                <!-- Theme toggle moved into Settings -->
+            </nav>
+            <p class="intro">for sharing human thought. Freely and openly.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="panel-home" class="panel active" role="tabpanel" aria-labelledby="home">
+            <section class="compose-section">
+                <h2>Share a Thought</h2>
+                <div class="compose-box">
+                    <textarea id="thought-input" placeholder="What are you thinking about?" maxlength="1000"></textarea>
+                    <div class="compose-actions">
+                        <span id="char-counter">1000</span>
+                        <button id="post-button">Post Thought</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="timeline-section">
+                <h2>Global Timeline</h2>
+                <div id="timeline"></div>
+            </section>
+        </section>
+
+        <section id="panel-search" class="panel" role="tabpanel" aria-labelledby="search">
+            <h2>Search</h2>
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search users, posts, or hashtags..." />
+                    <button id="search-button">Search</button>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </section>
+
+        <section id="panel-reels" class="panel" role="tabpanel" aria-labelledby="reels">
+            <h2>Reels</h2>
+            <div class="reels-section">
+                <div class="upload-reel">
+                    <h3>Upload Short Video</h3>
+                    <div class="upload-area">
+                        <input type="file" id="reel-upload" accept="video/*" />
+                        <div class="upload-prompt">
+                            <span>📹</span>
+                            <p>Click to upload a short video</p>
+                        </div>
+                    </div>
+                    <div class="reel-form" style="display: none;">
+                        <textarea id="reel-caption" placeholder="Add a caption..."></textarea>
+                        <button id="post-reel">Post Reel</button>
+                    </div>
+                </div>
+                <div id="reels-feed" class="reels-feed"></div>
+            </div>
+        </section>
+
+        <section id="panel-messages" class="panel" role="tabpanel" aria-labelledby="messages">
+            <h2>Messages</h2>
+            <div class="compose-box">
+                <input id="msg-to" class="input" placeholder="To (user id)" />
+                <textarea id="msg-text" placeholder="Write a message..."></textarea>
+                <div class="compose-actions">
+                    <button id="send-message">Send</button>
+                </div>
+            </div>
+            <div id="messages-list"></div>
+        </section>
+
+        <section id="panel-profile" class="panel" role="tabpanel" aria-labelledby="profile">
+            <div class="profile-section">
+                <div class="profile-header">
+                    <div class="profile-pic-container">
+                        <img id="profile-pic" src="https://via.placeholder.com/150/007bff/ffffff?text=Profile" alt="Profile Picture" />
+                        <button id="change-profile-pic" class="change-pic-btn">Change Photo</button>
+                        <input type="file" id="profile-pic-input" accept="image/*" style="display: none;" />
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profile-name">Your Name</h2>
+                        <p id="profile-username-display">@username</p>
+                        <p id="profile-bio-display">Your bio goes here...</p>
+                    </div>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="posts-count">0</span>
+                        <span class="stat-label">Posts</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="followers-count">0</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="following-count">0</span>
+                        <span class="stat-label">Following</span>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button id="edit-profile-btn" class="action-btn primary">Edit Profile</button>
+                    <button id="settings-btn" class="action-btn secondary">Settings</button>
+                </div>
+
+                <div class="profile-posts">
+                    <h3>Your Posts</h3>
+                    <div id="user-posts" class="posts-grid"></div>
+                </div>
+            </div>
+
+            <!-- Edit Profile Modal -->
+            <div id="edit-profile-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Edit Profile</h3>
+                    <div class="form-group">
+                        <label>Display Name</label>
+                        <input type="text" id="edit-display-name" placeholder="Display name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="edit-username" placeholder="username" />
+                    </div>
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea id="edit-bio" placeholder="Short bio..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button id="save-profile-changes" class="action-btn primary">Save Changes</button>
+                        <button id="cancel-edit-profile" class="action-btn secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Modal -->
+            <div id="settings-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Settings</h3>
+                    <div class="settings-section">
+                        <h4>Themes</h4>
+                        <div class="theme-options">
+                            <button class="theme-option" data-theme="light">☀️ Light</button>
+                            <button class="theme-option" data-theme="dark">🌙 Dark</button>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h4>Account Privacy</h4>
+                        <div class="privacy-options">
+                            <label class="privacy-option">
+                                <input type="radio" name="privacy" value="public" checked />
+                                <span>🌐 Public</span>
+                            </label>
+                            <label class="privacy-option">
+                                <input type="radio" name="privacy" value="private" />
+                                <span>🔒 Private</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h4>Account Management</h4>
+                        <div class="account-options">
+                            <button class="account-option" id="blocked-users-btn">🚫 Blocked Users</button>
+                            <button class="account-option" id="help-btn">❓ Help</button>
+                            <button class="account-option" id="about-btn">ℹ️ About</button>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button id="close-settings" class="action-btn secondary">Close</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TheThought Community. This is an open-source project.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
